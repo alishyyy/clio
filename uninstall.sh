@@ -7,7 +7,7 @@ NC=$'\033[0m'
 
 # Installation directories
 INSTALL_DIR="/usr/local/bin"
-SHARE_DIR="/usr/local/share/clio"
+SHARE_DIR="/usr/share/clio"
 
 if [ "$(id -u)" != "0" ]; then
     printf "%sError: This script must be run as root%s\n" "$RED" "$NC"
