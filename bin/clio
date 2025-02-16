@@ -1,0 +1,311 @@
+#!/bin/bash
+
+FACTS_FILE="/usr/local/share/clio/facts.txt"
+CONFIG_DIR="${HOME}/.config/clio"
+CONFIG_FILE="${CONFIG_DIR}/config"
+HISTORY_FILE="${CONFIG_DIR}/history"
+VERSION="1.1.0"
+
+
+CYAN=$'\033[0;36m'
+GREEN=$'\033[0;32m'
+YELLOW=$'\033[1;33m'
+BLUE=$'\033[0;34m'
+RED=$'\033[0;31m'
+PURPLE=$'\033[0;35m'
+NC=$'\033[0m'
+
+
+set -o errexit
+set -o nounset
+trap 'error_handler $? $LINENO $BASH_LINENO "$BASH_COMMAND" $(printf "::%s" ${FUNCNAME[@]:-})' ERR
+
+error_handler() {
+    local exit_code=$1
+    local line_no=$2
+    local bash_lineno=$3
+    local last_command=$4
+    local func_stack=$5
+
+    printf "%sError occurred in script at line: %s%s\n" "$RED" "$line_no" "$NC"
+    printf "%sCommand: %s%s\n" "$RED" "$last_command" "$NC"
+    printf "%sExit code: %s%s\n" "$RED" "$exit_code" "$NC"
+}
+
+
+check_dependencies() {
+    local deps=("tput" "sed" "grep" "cat")
+    local missing_deps=()
+
+    for dep in "${deps[@]}"; do
+        if ! command -v "$dep" >/dev/null 2>&1; then
+            missing_deps+=("$dep")
+        fi
+    done
+
+    if [ ${#missing_deps[@]} -ne 0 ]; then
+        printf "%sError: Missing required dependencies: %s%s\n" "$RED" "${missing_deps[*]}" "$NC"
+        exit 1
+    fi
+}
+
+init_config() {
+    if [ ! -d "$CONFIG_DIR" ]; then
+        mkdir -p "$CONFIG_DIR"
+    fi
+
+    if [ ! -f "$CONFIG_FILE" ]; then
+        cat > "$CONFIG_FILE" << EOF
+TYPING_SPEED=0.02
+SHOW_ANIMATIONS=true
+COLOR_THEME=default
+EOF
+    fi
+
+    if [ ! -f "$HISTORY_FILE" ]; then
+        touch "$HISTORY_FILE"
+    fi
+}
+
+load_config() {
+    if [ -f "$CONFIG_FILE" ]; then
+        # shellcheck source=/dev/null
+        source "$CONFIG_FILE"
+    fi
+}
+
+
+clear_screen() {
+    printf "\033[2J\033[H"
+}
+
+type_text() {
+    local text="$1"
+    local speed=${2:-$TYPING_SPEED}
+
+    if [ "${SHOW_ANIMATIONS:-true}" = "true" ]; then
+        for ((i=0; i<${#text}; i++)); do
+            printf "%s" "${text:$i:1}"
+            sleep "$speed"
+        done
+    else
+        printf "%s" "$text"
+    fi
+    printf "\n"
+}
+
+
+show_loading() {
+    if [ "${SHOW_ANIMATIONS:-true}" = "false" ]; then
+        return
+    fi
+
+    local -a frames=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
+    local frame_count=${#frames[@]}
+    local message="$1"
+
+    printf "\n%s%s" "$YELLOW" "$message"
+    for ((i=0; i<10; i++)); do
+        printf "\r%s%s ${frames[i % frame_count]}%s" "$YELLOW" "$message" "$NC"
+        sleep 0.1
+    done
+    printf "\n\n"
+}
+
+
+show_border() {
+    local width
+    width=$(tput cols)
+    printf "%s%s%s\n" "$PURPLE" "$(printf '━%.0s' $(seq 1 "$width"))" "$NC"
+}
+
+
+show_banner() {
+    clear_screen
+    cat << EOF
+    ${GREEN}
+     ██████╗██╗     ██╗ ██████╗
+    ██╔════╝██║     ██║██╔═══██╗
+    ██║     ██║     ██║██║   ██║
+    ██║     ██║     ██║██║   ██║
+    ╚██████╗███████╗██║╚██████╔╝
+     ╚═════╝╚══════╝╚═╝ ╚═════╝
+
+    Computing's History Keeper v${VERSION}
+    ${NC}
+EOF
+}
+
+save_to_history() {
+    local fact="$1"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $fact" >> "$HISTORY_FILE"
+}
+
+# Function to search facts
+search_facts() {
+    local search_term="$1"
+    local count=0
+
+    while IFS= read -r line; do
+        if [[ "$line" =~ $search_term ]]; then
+            printf "%s%d)%s %s\n" "$YELLOW" $((++count)) "$NC" "$line"
+        fi
+    done < "$FACTS_FILE"
+
+    if [ "$count" -eq 0 ]; then
+        printf "%sNo matching facts found.%s\n" "$RED" "$NC"
+    fi
+}
+
+
+show_random_fact() {
+    if [ ! -f "$FACTS_FILE" ]; then
+        printf "%sError: Historical archives not found at %s%s\n" "$RED" "$FACTS_FILE" "$NC"
+        exit 1
+    fi
+
+    # Count total facts and select random one
+    total_facts=$(wc -l < "$FACTS_FILE")
+    random_line=$((RANDOM % total_facts + 1))
+    fact=$(sed "${random_line}q;d" "$FACTS_FILE")
+
+    # Display with formatting
+    show_banner
+    show_loading "Consulting the archives..."
+
+    show_border
+    printf "\n"
+
+    # Center the fact
+    terminal_width=$(tput cols)
+    fact_length=${#fact}
+    padding=$(( (terminal_width - fact_length) / 2 ))
+
+    if [ $padding -gt 0 ]; then
+        printf "%${padding}s" ""
+    fi
+
+    type_text "$fact"
+    printf "\n"
+    show_border
+
+    # Save to history
+    save_to_history "$fact"
+
+    # Show footer
+    printf "\n%sPress ENTER for another fact, 's' to search, 'h' for history, or 'q' to quit%s\n" "$YELLOW" "$NC"
+}
+
+
+show_history() {
+    if [ -f "$HISTORY_FILE" ]; then
+        printf "%sViewing History:%s\n\n" "$BLUE" "$NC"
+        tail -n 10 "$HISTORY_FILE" | while IFS= read -r line; do
+            printf "%s\n" "$line"
+        done
+    else
+        printf "%sNo history available.%s\n" "$RED" "$NC"
+    fi
+}
+
+# Function to show help
+show_help() {
+    cat << EOF
+Usage: clio [OPTION]
+Display random computing history facts.
+
+Options:
+  -s TERM     Search for facts containing TERM
+  -h          Display this help message
+  -v          Display version information
+  -c          Clear history
+  --no-color  Disable colored output
+  --no-animation  Disable animations
+
+Interactive commands:
+  ENTER       Show another fact
+  s           Search facts
+  h           View history
+  q           Quit
+EOF
+}
+
+
+while getopts ":hs:vc-:" opt; do
+    case ${opt} in
+        h )
+            show_help
+            exit 0
+            ;;
+        s )
+            search_facts "$OPTARG"
+            exit 0
+            ;;
+        v )
+            printf "clio version %s\n" "$VERSION"
+            exit 0
+            ;;
+        c )
+            rm -f "$HISTORY_FILE"
+            touch "$HISTORY_FILE"
+            printf "%sHistory cleared.%s\n" "$GREEN" "$NC"
+            exit 0
+            ;;
+        - )
+            case "${OPTARG}" in
+                no-color)
+                    CYAN=''
+                    GREEN=''
+                    YELLOW=''
+                    BLUE=''
+                    RED=''
+                    PURPLE=''
+                    NC=''
+                    ;;
+                no-animation)
+                    SHOW_ANIMATIONS=false
+                    ;;
+                *)
+                    printf "Invalid option: --%s\n" "$OPTARG" >&2
+                    exit 1
+                    ;;
+            esac
+            ;;
+        \? )
+            printf "Invalid Option: -%s\n" "$OPTARG" 1>&2
+            exit 1
+            ;;
+    esac
+done
+
+
+check_dependencies
+init_config
+load_config
+
+
+while true; do
+    show_random_fact
+    read -r input
+    case "$input" in
+        q|Q)
+            printf "%sGoodbye!%s\n" "$GREEN" "$NC"
+            exit 0
+            ;;
+        s|S)
+            printf "Enter search term: "
+            read -r search_term
+            search_facts "$search_term"
+            printf "\nPress ENTER to continue..."
+            read -r
+            ;;
+        h|H)
+            show_history
+            printf "\nPress ENTER to continue..."
+            read -r
+            ;;
+        *)
+            clear_screen
+            ;;
+    esac
+done
