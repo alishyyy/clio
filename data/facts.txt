@@ -37,3 +37,42 @@ The first computer game, Spacewar!, was created in 1962 at MIT on a PDP-1.
 VIM (Vi IMproved) was released by Bram Moolenaar in 1991 as an enhanced version of vi.
 The first version of PHP was created by Rasmus Lerdorf in 1994 to track visits to his online resume.
 The famous "Konami Code" was created by Kazuhisa Hashimoto in 1986 for Gradius.
+The ENIAC computer was completed in 1945 and had 17,468 vacuum tubes, weighing 27 tons.
+The first transistor was demonstrated at Bell Labs in 1947 by Bardeen, Brattain, and Shockley.
+The first commercial modem (Bell 101) was released in 1958 with a speed of 110 bits per second.
+The BASIC programming language was created by John Kemeny and Thomas Kurtz in 1964 at Dartmouth.
+The first RAID system was developed by David Patterson, Randy Katz, and Garth Gibson at UC Berkeley in 1987.
+The AWK programming language was created in 1977, named after its creators Aho, Weinberger, and Kernighan.
+The famous "You have mail" notification was introduced in BSD Unix in 1978.
+The first version of Emacs was written by Richard Stallman in 1976 at MIT's AI Lab.
+The famous "sudo" command was created by Bob Coggeshall and Cliff Spencer in 1980 at SUNY/Buffalo.
+The first release of Debian Linux was announced by Ian Murdock on August 16, 1993.
+The Bourne Shell (sh) was developed by Stephen Bourne at Bell Labs in 1977.
+The famous "fortune" program was written by Ken Arnold and was first included in BSD Unix in 1979.
+The X Window System was developed at MIT in 1984, leading to modern GUI interfaces on Unix systems.
+The infamous "Year 2000 Problem" was first noticed by Bob Bemer in 1958.
+The "grep" command was created by Ken Thompson, named after the ed command g/re/p (globally search a regular expression and print).
+The first version of sed (stream editor) was developed by Lee E. McMahon at Bell Labs in 1973.
+The first version of make was written by Stuart Feldman at Bell Labs in 1976.
+The cron daemon was written by Ken Thompson in the 1970s, derived from the Greek word for time, "chronos".
+The first commercial implementation of TCP/IP was released in 1983 on a VAX system.
+The BIND DNS server was created by four UC Berkeley students in the early 1980s.
+The first release of Red Hat Linux was made by Marc Ewing in 1994.
+The famous "pipe" concept in Unix was proposed by Doug McIlroy at Bell Labs in 1964.
+The first version of SCSI was standardized in 1986, originally called SASI.
+The IRC (Internet Relay Chat) protocol was created by Jarkko Oikarinen in August 1988.
+The famous "chmod" command was part of the original Unix implementation in 1969.
+The core utilities (coreutils) package was created as part of the GNU Project in 1992.
+The "ls" command's color output was introduced in the early 1990s to help distinguish file types.
+The /etc directory name is thought to mean "et cetera" although some argue it means "editable text configuration".
+The first version of the GNOME desktop environment was released in 1999 by Miguel de Icaza and Federico Mena.
+The KDE desktop environment was started in 1996 by Matthias Ettrich.
+The first version of the RPM Package Manager was released by Red Hat in 1997.
+The first Linux swap partition was implemented by Linus Torvalds in 1991.
+The proc filesystem was first implemented in Unix 8th Edition in 1985.
+The famous "man" pages were created by Dennis Ritchie and Ken Thompson in 1971.
+The syslog protocol was developed by Eric Allman as part of the Sendmail project in the 1980s.
+The first version of Xfce was released by Olivier Fourdan in 1996.
+The first implementation of NFS (Network File System) was released by Sun Microsystems in 1984.
+The first Linux distribution, MCC Interim Linux, was released in February 1992.
+The infamous "rm -rf /" command protection was added to GNU rm in the early 1990s.
