@@ -30,7 +30,7 @@ Think of it as `fortune` but for tech history – perfect for your terminal star
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/clio.git
+git clone https://github.com/alishyyy/clio.git
 
 # Navigate to the directory
 cd clio
@@ -142,7 +142,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-Made with ❤️ by [Your Name]
+Made with ❤️ by Alishyy
 
 If you find Clio useful, consider giving it a ⭐️!
 </div>
