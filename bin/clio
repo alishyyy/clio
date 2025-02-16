@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FACTS_FILE="/usr/local/share/clio/facts.txt"
+FACTS_FILE="/usr/share/clio/facts.txt"
 CONFIG_DIR="${HOME}/.config/clio"
 CONFIG_FILE="${CONFIG_DIR}/config"
 HISTORY_FILE="${CONFIG_DIR}/history"
