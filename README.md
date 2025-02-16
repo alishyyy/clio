@@ -137,7 +137,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Category-based fact filtering
 - [ ] Fact submission web interface
 - [ ] API for retrieving facts
-- [ ] Mobile companion app
+
 
 ---
 
