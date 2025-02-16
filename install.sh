@@ -12,7 +12,7 @@ SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
 
 # Installation directories
 INSTALL_DIR="/usr/local/bin"
-SHARE_DIR="/usr/local/share/clio"
+SHARE_DIR="/usr/share/clio"
 
 show_install_progress() {
     local -a frames=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
