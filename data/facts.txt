@@ -1,0 +1,39 @@
+The first Unix system was developed in 1969 by Ken Thompson at Bell Labs, written in assembly language for a DEC PDP-7.
+The C programming language was created by Dennis Ritchie between 1969 and 1973 at Bell Labs to rewrite Unix.
+The term "bug" in computing originated in 1947 when Grace Hopper found a moth causing problems in the Harvard Mark II computer.
+Linus Torvalds created Linux in 1991 as a free alternative to MINIX while he was a student at the University of Helsinki.
+The first email was sent by Ray Tomlinson in 1971. He chose the @ symbol for email addresses.
+The vi text editor was created by Bill Joy in 1976 while he was a graduate student at UC Berkeley.
+BSD Unix began as a series of patches to AT&T Unix at UC Berkeley in 1977.
+Richard Stallman launched the GNU Project in 1983 to create a free Unix-like operating system.
+The first version of the TCP/IP protocol was deployed on ARPANET in 1983.
+The World Wide Web was invented by Tim Berners-Lee in 1989 while working at CERN.
+The first release of Python was made by Guido van Rossum in 1991.
+The first commit to Git was made by Linus Torvalds on April 7, 2005.
+The Apache web server was created in 1995, named because it was "a patchy" server made from patches.
+The first version of Perl was released by Larry Wall in 1987 as a Unix scripting language.
+The first release of Firefox (then called Phoenix) was made in 2002.
+The term "open source" was coined in 1998 by Christine Peterson during a strategy session in Palo Alto.
+The first version of MySQL was released in 1995 by Michael Widenius and David Axmark.
+The SSH (Secure Shell) protocol was invented by Tatu Ylönen in 1995 after a password-sniffing attack at his university.
+The LAMP stack (Linux, Apache, MySQL, PHP) became popular in the late 1990s as a free web development platform.
+Ken Thompson and Rob Pike created the UTF-8 encoding over dinner in a New Jersey diner in 1992.
+Margaret Hamilton coined the term "software engineering" while working on the Apollo program at NASA.
+The first computer mouse was invented by Douglas Engelbart in the 1960s and was made of wood.
+The first hard drive (IBM 350) was introduced in 1956 with a capacity of 3.75 MB.
+Ada Lovelace wrote what is considered to be the first computer program in 1842 for the Analytical Engine.
+The Ruby programming language was created by Yukihiro Matsumoto in 1995 to make programmers happy.
+The first version of JavaScript was created by Brendan Eich in just 10 days in 1995.
+The first webcam was created at the University of Cambridge to monitor a coffee pot in 1991.
+The first computer virus, called Creeper, was created in 1971 by Bob Thomas at BBN Technologies.
+The famous "404 Not Found" error comes from room 404 at CERN, which housed the web's first servers.
+The ZIP file format was created by Phil Katz in 1989 and released with PKZIP compression utility.
+The first version of Windows (1.0) was released in 1985, two years after its announcement.
+The first dot-com domain name ever registered was symbolics.com on March 15, 1985.
+The first commit message in Linux was "Initial revision of Linux" by Linus Torvalds.
+The PNG image format was created in 1995 as a free alternative to GIF.
+The term "hacker" originally meant someone who made furniture with an axe.
+The first computer game, Spacewar!, was created in 1962 at MIT on a PDP-1.
+VIM (Vi IMproved) was released by Bram Moolenaar in 1991 as an enhanced version of vi.
+The first version of PHP was created by Rasmus Lerdorf in 1994 to track visits to his online resume.
+The famous "Konami Code" was created by Kazuhisa Hashimoto in 1986 for Gradius.
