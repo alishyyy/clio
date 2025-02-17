@@ -1,18 +1,17 @@
 #!/bin/bash
 
-# Color definitions
 declare -r RED='\033[0;31m'
 declare -r GREEN='\033[0;32m'
 declare -r BLUE='\033[0;34m'
 declare -r NC='\033[0m'
 
-# Installation paths
+
 declare -r INSTALL_DIR="/usr/local/bin"
 declare -r SHARE_DIR="/usr/share/clio"
 declare -r REQUIRED_DEPS=(tput sed grep cat)
-declare -r MIN_DISK_SPACE=10  # Required free space in MB
+declare -r MIN_DISK_SPACE=10  
 
-# Helper functions
+
 print_banner() {
     printf "${BLUE}
     ┌──────────────────────┐
@@ -71,7 +70,7 @@ check_existing_installation() {
 }
 
 check_system_requirements() {
-    # Check disk space
+  
     local free_space
     free_space=$(df -m "$INSTALL_DIR" | awk 'NR==2 {print $4}')
     if [ "$free_space" -lt "$MIN_DISK_SPACE" ]; then
