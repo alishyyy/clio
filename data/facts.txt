@@ -76,3 +76,15 @@ The first version of Xfce was released by Olivier Fourdan in 1996.
 The first implementation of NFS (Network File System) was released by Sun Microsystems in 1984.
 The first Linux distribution, MCC Interim Linux, was released in February 1992.
 The infamous "rm -rf /" command protection was added to GNU rm in the early 1990s.
+The Intel 4004, the world’s first microprocessor, was released in 1971, paving the way for modern computing.
+VisiCalc, introduced in 1979, became the first spreadsheet program and is often credited with sparking the personal computer revolution.
+The IBM PC, launched in 1981, set the standard architecture for personal computers throughout the 1980s and beyond.
+The first digital camera was invented in 1975 by Steven Sasson at Kodak, marking the beginning of digital photography.
+In 1997, IBM’s Deep Blue defeated world chess champion Garry Kasparov in a historic match, highlighting the potential of computer intelligence.
+The Mosaic web browser, released in 1993, was the first graphical browser for the World Wide Web, making the internet accessible to the masses.
+VMware, founded in 1998, pioneered virtualization technology, which laid the groundwork for modern cloud computing.
+The IBM Simon, released in 1994, is recognized as the first smartphone, combining mobile phone capabilities with PDA functions.
+The Altair 8800, launched in 1975, is widely regarded as the first commercially successful personal computer.
+Smalltalk, developed in the 1970s, was one of the earliest object-oriented programming languages, influencing many modern languages.
+The first Supercomputer, the CDC 6600 built in 1964 by Seymour Cray, was the fastest computer of its time and set new standards for performance.
+Apple’s introduction of the iPhone in 2007 revolutionized mobile computing, creating a new era for smartphones.
