@@ -188,3 +188,98 @@ The first computer-based financial modeling system was developed in 1969.
 The first computer-controlled railway signaling system was installed in 1966.
 The first computer-based dental patient record system was developed in 1971.
 The first computer-based CAD system was developed at MIT in 1963.
+The first version of Unix was written in PDP-7 assembly language and took up 4K words of memory.
+The Unix "tree" command was originally written by Steve Baker in 1996.
+The Linux penguin mascot "Tux" was created by Larry Ewing using GIMP in 1996.
+The first commercial Unix workstation was the Sun-1, released in 1982.
+The Unix "at" command for scheduling tasks was introduced in Version 7 Unix in 1979.
+The SCO vs Linux lawsuit, one of the most significant legal battles in open source, began in 2003.
+The Unix "wall" command for sending messages was created for multi-user communication in early Unix systems.
+The popular Unix text editor "pico" was originally part of the Pine email client in 1989.
+The BSD daemon mascot, nicknamed "Beastie," was drawn by John Lasseter before he joined Pixar.
+The first version of the X Window System was released for Unix in 1984, revolutionizing graphical interfaces.
+The Unix philosophy of "do one thing and do it well" was articulated by Ken Thompson in the early 1970s.
+The first commercial Linux company, Yggdrasil Computing, was founded in 1992.
+The Unix "more" command was written by Daniel Halbert at UC Berkeley in 1978.
+The first Linux distribution to use package management was Softlanding Linux System (SLS) in 1993.
+The Unix "less" command was created by Mark Nudelman in 1985 as an enhancement to "more."
+The first Linux Journal magazine was published in March 1994.
+The Unix-to-Unix Copy (UUCP) protocol was developed at AT&T Bell Labs in 1976.
+The first Linux port to a non-x86 platform was to the Motorola 68000 in 1993.
+The term "superuser" originated in Multics and was adopted by Unix in its early development.
+The first Linux Kernel Mailing List was established in 1995.
+The Unix "talk" command for real-time chat was introduced in BSD Unix in 1983.
+The first Linux User Group (LUG) was formed in Australia in 1992.
+The Unix "nice" command for adjusting process priority was present in the very first version of Unix.
+The Linux Standard Base (LSB) was established in 1998 to increase compatibility among distributions.
+The famous Unix "cowsay" program was written by Tony Monroe in 1999.
+The first commercial Linux-based PDA was the Agenda VR3, released in 2001.
+The Unix "find" command was originally written by Dick Haight in 1974.
+Ubuntu Linux was first released in October 2004, with the codename "Warty Warthog."
+The Unix "cal" command has been calculating calendars correctly since 1970.
+The first POSIX standard for Unix was published in 1988.
+The Linux "wine" compatibility layer was first released in 1993 by Bob Amstadt and Eric Youngdale.
+The first Unix shell script was written by Ken Thompson in 1971.
+Slackware, one of the oldest surviving Linux distributions, was created by Patrick Volkerding in 1993.
+The Unix "yes" command was created as a joke but found practical applications in scripting.
+The first Linux swap partition code was written by Linus Torvalds in a single evening.
+The Unix "tee" command was named after the T-splitter used in plumbing.
+The first Linux-based supercomputer was built at NASA in 1997.
+The Unix "sed" stream editor was created by Lee E. McMahon at Bell Labs in 1973.
+The first commercial Linux game was "Doom" by id Software in 1994.
+The Unix System V Interface Definition (SVID) was first published in 1985.
+The Linux "locate" command database was originally updated by a cron job running at midnight.
+The Unix "troff" text formatting system was written by Joe Ossanna in 1973.
+The first public announcement of Linux was made by Linus Torvalds on August 25, 1991.
+The Unix "cron" daemon was named after the Greek word "chronos" meaning time.
+The first Linux distribution to use systemd was Fedora 15 in 2011.
+The Unix "su" command originally stood for "substitute user" not "superuser."
+The first Linux-based mobile phone was the Motorola A760 in 2003.
+The Unix "vi" editor command syntax was influenced by the ADM-3A terminal's keyboard layout.
+The Linux virtual filesystem (VFS) was implemented by Linus Torvalds in 1993.
+The Unix "who" command was one of the first commands implemented in Unix.
+The first Linux-based consumer router was released by Cisco in 2003.
+The Unix "fmt" command was written by Kurt Shoens in 1979.
+The first Linux-based tablet was the Nokia 770 in 2005.
+The Unix "cut" command was created by Brian Kernighan in 1972.
+The first Linux USB stack was implemented in 1997.
+The Unix "sort" command has remained largely unchanged since Version 7 Unix.
+The first Linux-based smartwatch was released by IBM in 2000.
+The Unix "od" (octal dump) command dates back to the first version of Unix.
+The first Linux distribution to use KDE by default was Mandrake in 1998.
+The Unix "diff" command was written by Doug McIlroy in 1974.
+The first Linux-based gaming console was the Indrema L600 in 2000.
+The Unix "tar" command was created for tape backups in 1979.
+The first Linux distribution to use GNOME by default was Red Hat Linux in 1999.
+The Unix "ps" command originally showed process status for only the current terminal.
+The first Linux real-time kernel patch was released in 1999.
+The Unix "dd" command was named after the IBM JCL DD (Data Definition) statement.
+The first Linux distribution to use X.Org instead of XFree86 was Fedora Core 3.
+The Unix "grep" command's name comes from the ed command "g/re/p".
+The first Linux distribution to use systemd-boot was Arch Linux in 2012.
+The Unix "awk" command was named after its creators Aho, Weinberger, and Kernighan.
+The first Linux distribution to use Wayland by default was Fedora 25.
+The Unix "cat" command was written by Ken Thompson for concatenating files.
+The first Linux distribution to use PulseAudio by default was Fedora 8.
+The Unix "touch" command was originally created to update file timestamps only.
+The first Linux distribution to use btrfs by default was Fedora 33.
+The Unix "ln" command for creating links was present in the first version of Unix.
+The first Linux distribution to use systemd-resolved was Ubuntu 16.10.
+The Unix "kill" command was created to terminate processes gracefully.
+The first Linux distribution to use Plymouth was Fedora 10.
+The Unix "chmod" command's octal notation was inspired by PDP-11 protection bits.
+The first Linux distribution to use GRUB2 by default was Ubuntu 9.10.
+The Unix "chown" command was essential for the first multi-user implementations.
+The first Linux distribution to support UEFI secure boot was Ubuntu 12.04.2.
+The Unix "df" command (disk free) has been calculating storage space since 1971.
+The first Linux distribution to use Pipewire by default was Fedora 34.
+The Unix "du" command (disk usage) was written to help manage limited disk space.
+The first Linux distribution to use Snap packages was Ubuntu 16.04.
+The Unix "mount" command's syntax was influenced by early filesystem implementations.
+The first Linux distribution to use Flatpak by default was Fedora Silverblue.
+The Unix "umask" command was created to set default file permissions.
+The first Linux distribution to use AppArmor by default was Ubuntu 7.10.
+The Unix "chsh" command was added to allow users to change their login shell.
+The first Linux distribution to use SELinux by default was Fedora Core 2.
+The Unix "nohup" command was created to run processes immune to hangups.
+The first Linux distribution to use zram by default was Ubuntu 21.10.
