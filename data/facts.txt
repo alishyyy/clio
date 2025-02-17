@@ -88,3 +88,103 @@ The Altair 8800, launched in 1975, is widely regarded as the first commercially 
 Smalltalk, developed in the 1970s, was one of the earliest object-oriented programming languages, influencing many modern languages.
 The first Supercomputer, the CDC 6600 built in 1964 by Seymour Cray, was the fastest computer of its time and set new standards for performance.
 Apple’s introduction of the iPhone in 2007 revolutionized mobile computing, creating a new era for smartphones.
+The first version of MINIX was released by Andrew S. Tanenbaum in 1987 as a teaching tool.
+The Bourne Again Shell (bash) was created by Brian Fox for the GNU Project in 1989.
+The term "daemon" in computing comes from Maxwell's demon, a thought experiment in physics.
+The famous "hello, world" program was introduced by Brian Kernighan in a 1972 B language tutorial.
+The term "boot" comes from "bootstrap," referring to the impossibility of pulling oneself up by one's bootstraps.
+The first Linux kernel release (0.01) had 10,239 lines of code.
+The name "Debian" combines the names of Ian Murdock and his then-girlfriend Debra Lynn.
+The first computer password system was implemented at MIT in the Compatible Time-Sharing System in 1961.
+The concept of recursive functions in programming was first formalized by Kurt Gödel in 1933.
+The first computer network was CYCLADES in France, developed in the early 1970s.
+The term "bug" was used for technical problems long before Grace Hopper's moth, dating back to Thomas Edison.
+The first version of BIND (Berkeley Internet Name Domain) was written in 1984.
+The Multics operating system, predecessor to Unix, was developed from 1964 to 1969.
+The first implementation of TCP/IP for BSD Unix was done by Bill Joy and Sam Leffler.
+The "core dump" term comes from early computers that used magnetic core memory.
+The first computer mouse patent was titled "X-Y Position Indicator for a Display System."
+The Pascal programming language was created by Niklaus Wirth in 1970.
+The concept of time-sharing operating systems was first proposed by John McCarthy in 1959.
+The first commercial implementation of SQL was Oracle, released in 1979.
+The LISP programming language was created by John McCarthy in 1958.
+The first computer bulletin board system (CBBS) was created in 1978 during a Chicago blizzard.
+The first computer-to-computer communication occurred on October 29, 1969, between UCLA and SRI.
+The term "Silicon Valley" was first published in 1971 by Don Hoefler.
+The first version of sendmail was written by Eric Allman at UC Berkeley in 1981.
+The Common Gateway Interface (CGI) specification was created by Rob McCool at NCSA in 1993.
+The first network email was sent between two computers on the same network in 1971.
+The concept of virtual memory was first implemented in the Atlas computer in 1962.
+The first computer spreadsheet, VisiCalc, was released in 1979.
+The first GUI was developed at Xerox PARC in the early 1970s.
+The first computer animation was created by Edward Zajac at Bell Labs in 1963.
+The first commercial Unix license was sold to the University of Illinois in 1975.
+The term "byte" was coined by Werner Buchholz in 1956 during early IBM Stretch computer design.
+The first Unix shell (Thompson shell) was written by Ken Thompson in 1971.
+The C++ programming language was initially called "C with Classes" by Bjarne Stroustrup.
+The first commercial dialup ISP was The World, launched in 1989.
+The File Transfer Protocol (FTP) specification was published by Abhay Bhushan in 1971.
+The first release of SQLite was made by D. Richard Hipp in 2000.
+The first computer chess program was written by Claude Shannon in 1950.
+The first computer-generated music was created by Max Mathews at Bell Labs in 1957.
+The term "cyberspace" was coined by William Gibson in his 1982 story "Burning Chrome."
+The first computer database was implemented in 1961 for the Apollo program.
+The "finger" protocol was written by Les Earnest at Stanford in 1971.
+The original Unix manual was written by Ken Thompson and Dennis Ritchie in 1971.
+The first computer podcast was "Daily Source Code" by Adam Curry in 2004.
+The first version of CUPS (Common Unix Printing System) was released in 1999.
+The first computer time-sharing service was Dartmouth Time Sharing System in 1964.
+The ZIP code in the US postal system inspired the name of the ZIP compression format.
+The first computer virus to spread in the wild was Elk Cloner in 1982.
+The concept of object-oriented programming was introduced in Simula 67.
+The first computer telegram was sent via the CSNET in 1981.
+The first computer-generated film sequence was in "Westworld" (1973).
+The first computer font was designed by Max Miedinger in 1957.
+The concept of regular expressions was developed by Stephen Cole Kleene in 1951.
+The first computer-based training program was PLATO in 1960.
+The first computer art competition was held at Technische Universität Stuttgart in 1965.
+The first computer-generated map was created by SYMAP in 1963.
+The first computer adventure game was "Colossal Cave Adventure" in 1976.
+The first computer password crack was documented in 1962 at MIT.
+The first computer time-sharing business was Tymshare in 1966.
+The first computer dating service was Operation Match in 1965.
+The first computer-generated special effects in a movie were in "Futureworld" (1976).
+The first computer-controlled traffic signal system was installed in Toronto in 1963.
+The first computer-based library catalog was at the University of Illinois in 1967.
+The first computer-generated random numbers were created by ENIAC in 1946.
+The first computer simulation of a solar system was done by MIT in 1961.
+The first computer-based airline reservation system was SABRE in 1964.
+The first computer-generated fractals were created by Benoit Mandelbrot in 1975.
+The first computer-based weather forecast was made by ENIAC in 1950.
+The first computer-based stock trading system was implemented in 1971.
+The concept of computer time-sharing was first demonstrated in 1957 at MIT.
+The first computer-generated music album was "Computer World" by Kraftwerk in 1981.
+The first computer-based medical diagnosis system was MYCIN in 1972.
+The first computer-generated animation film was "Hunger" by Peter Foldes in 1974.
+The first computer-controlled robot was installed at General Motors in 1961.
+The first computer-based flight simulator was created by Link in 1929.
+The concept of computer networking was first proposed by J.C.R. Licklider in 1963.
+The first computer-based architectural design system was Sketchpad in 1963.
+The first computer-generated hologram was created at the University of Michigan in 1966.
+The first computer-based particle physics simulation was done at CERN in 1968.
+The first computer-controlled manufacturing system was implemented at GM in 1952.
+The first computer-based inventory system was implemented by J. Lyons & Co. in 1951.
+The first computer-based patient monitoring system was developed in 1965.
+The first computer-generated movie credits appeared in "Superman" (1978).
+The first computer-based retail point-of-sale system was implemented in 1974.
+The first computer-controlled building environment system was installed in 1969.
+The concept of computer directories was introduced in Multics in 1965.
+The first computer-based classroom instruction system was PLATO IV in 1972.
+The first computer-generated abstract art was created by Ben Laposky in 1952.
+The first computer-based earthquake prediction system was developed in 1964.
+The first computer-controlled telescope was installed at Kitt Peak in 1966.
+The first computer-based language translation system was developed in 1954.
+The first computer-generated music notation was created at MIT in 1957.
+The first computer-based text-to-speech system was developed at Bell Labs in 1961.
+The first computer-controlled traffic light system was installed in 1967.
+The first computer-based nuclear reactor control system was implemented in 1963.
+The first computer-generated mathematical proof was completed in 1976.
+The first computer-based financial modeling system was developed in 1969.
+The first computer-controlled railway signaling system was installed in 1966.
+The first computer-based dental patient record system was developed in 1971.
+The first computer-based CAD system was developed at MIT in 1963.
