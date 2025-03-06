@@ -283,3 +283,47 @@ The Unix "chsh" command was added to allow users to change their login shell.
 The first Linux distribution to use SELinux by default was Fedora Core 2.
 The Unix "nohup" command was created to run processes immune to hangups.
 The first Linux distribution to use zram by default was Ubuntu 21.10.
+The first computer bug wasn't actually found by Grace Hopper herself, but by her team. She was, however, the one who popularized the term.
+The first graphical web browser, Mosaic, was developed by Marc Andreessen and Eric Bina at NCSA in 1993.
+The term "Wi-Fi" doesn't actually stand for anything. It was created by a brand consulting firm as a play on "Hi-Fi".
+The first version of SQL was called SEQUEL (Structured English Query Language) and was developed at IBM in the early 1970s.
+The floppy disk was invented by IBM engineers led by Alan Shugart in 1967.
+The MP3 file format was developed primarily by the Fraunhofer Society in Germany in the early 1990s.
+The PDF file format was created by Adobe co-founder John Warnock, with the first specification released in 1993.
+Linus Torvalds also created Git because he was dissatisfied with existing version control systems
+The Java programming language was originally designed for interactive television, but was too advanced for the digital cable industry at the time.
+The first version of HTML was proposed by Tim Berners-Lee in 1991 and had only 18 tags.
+The MIDI (Musical Instrument Digital Interface) standard was published in 1983 and is still widely used today.
+The USB standard was initially developed in 1994 by a consortium of companies including Intel, Microsoft, and IBM.
+The concept of RFID was first developed during World War II for identifying friendly aircraft.
+The favicon.ico file format and concept was introduced by Microsoft with Internet Explorer 5 in 1999.
+FORTRAN, developed in 1957, is considered the first high-level programming language and is still in use today.
+The first working prototype of the Internet was ARPANET, which came online in 1969 with just four connected computers.
+The HTTP protocol was created by Tim Berners-Lee as part of his work on the World Wide Web at CERN.
+The first SMS text message was sent in 1992 and simply said "Merry Christmas."
+The first tweet on Twitter was posted by Jack Dorsey on March 21, 2006, and read "just setting up my twttr."
+Alan Turing's 1936 paper "On Computable Numbers" laid the theoretical foundation for modern computing before physical computers existed.
+The CAPTCHA system was invented at Carnegie Mellon University in 2000 as a way to distinguish humans from bots.
+The first version of Microsoft Windows took two years longer to develop than initially planned.
+The famous "rule of thumb" in user interface design that a system should respond within 400ms comes from research in the 1960s.
+The JPEG image format was standardized in 1992 by the Joint Photographic Experts Group.
+The name "Unix" was a pun on "Multics," the previous operating system Bell Labs had worked on.
+The Unix epoch (time measurement starting point) is January 1, 1970, 00:00:00 UTC.
+The Linux mascot, Tux, was chosen because Linus Torvalds was once bitten by a penguin at an Australian zoo.
+The first version of Ubuntu was named "Warty Warthog" because Mark Shuttleworth considered it rough but ready.
+The bourne shell (sh) was named after its creator Stephen Bourne, and the bourne-again shell (bash) is a pun on this name.
+The Linux kernel was almost named "Freax" (a combination of "free", "freak", and "Unix") before a friend who administered the FTP server named Torvalds' directory "Linux."
+The "sudo" command's famous message "with great power comes great responsibility" is a reference to Spider-Man.
+The GNOME desktop environment name stands for "GNU Network Object Model Environment."
+The Unix "xargs" command was created by Roger Schlafly in 1980 for complex command execution.
+The Alpine Linux distribution, popular in containers, was originally developed as an installation system for embedded routers.
+The Unix "dmesg" command (display message) was created to show kernel ring buffer messages.
+The famous Unix fortune program has its origins in fortune cookies and was first included in Version 7 Unix.
+Gentoo Linux was named after the Gentoo penguin, the fastest swimming penguin species.
+The Linux kernel was initially unable to run the X Window System, which limited its popularity until this was resolved.
+The Solarix Unix variant was named for a combination of Solaris and Unix.
+The Arch Linux philosophy of simplicity and user-centrality is called "The Arch Way."
+FreeBSD's mascot is a red daemon named "Beastie" with sneakers, a pitchfork, and a cape.
+The "shebang" (#!) at the beginning of Unix shell scripts was invented by Dennis Ritchie.
+The Linux /proc filesystem was originally developed for Unix System V by Roger Faulkner and Ron Gomes.
+Puppy Linux was designed to be so small it could run entirely in RAM on older computers.
