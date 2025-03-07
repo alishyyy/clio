@@ -1,267 +1,67 @@
 #!/bin/bash
 
+VERSION="1.3.0"
 
-VERSION="1.2.0"
+# Configuration path - matches install.sh
+FACTS_FILE="/usr/share/clio/facts.txt"
 
-# Configuration paths
-FACTS_FILE="/usr/local/share/clio/facts.txt"
-CONFIG_DIR="${HOME}/.config/clio"
-CONFIG_FILE="${CONFIG_DIR}/config"
-
-
-declare -A COLORS=(
-    ["CYAN"]=$'\033[0;36m'
-    ["GREEN"]=$'\033[0;32m'
-    ["YELLOW"]=$'\033[1;33m'
-    ["BLUE"]=$'\033[0;34m'
-    ["RED"]=$'\033[0;31m'
-    ["PURPLE"]=$'\033[0;35m'
-    ["BOLD"]=$'\033[1m'
-    ["NC"]=$'\033[0m'
-)
-
-
-declare -a LOADING_EMOJIS=("📚" "💭" "💡" "🔍" "📖")
-
-
-declare -a BORDER_PATTERNS=(
-    "═══════════════"
-    "─────────────"
-    "───────────"
-)
-
-
-set -o errexit
-set -o nounset
-trap 'error_handler $? $LINENO "$BASH_COMMAND"' ERR
-
-error_handler() {
-    local exit_code=$1
-    local line_no=$2
-    local command=$3
-
-    printf "\n${COLORS[RED]}Error at line ${line_no}${COLORS[NC]}\n"
-    printf "${COLORS[RED]}Command: ${command}${COLORS[NC]}\n"
-    printf "${COLORS[RED]}Exit code: ${exit_code}${COLORS[NC]}\n"
-    exit 1
-}
-
-check_dependencies() {
-    local deps=("tput" "sed" "grep" "cat")
-    local missing=()
-
-    for dep in "${deps[@]}"; do
-        if ! command -v "$dep" >/dev/null 2>&1; then
-            missing+=("$dep")
-        fi
-    done
-
-    if [ ${#missing[@]} -ne 0 ]; then
-        printf "${COLORS[RED]}Missing dependencies: ${missing[*]}${COLORS[NC]}\n"
-        exit 1
-    fi
-}
-
-init_config() {
-    mkdir -p "$CONFIG_DIR"
-    if [ ! -f "$CONFIG_FILE" ]; then
-        cat > "$CONFIG_FILE" << EOF
-SHOW_ANIMATIONS=true
-COLOR_THEME=default
-EOF
-    fi
-}
-
-show_loading_animation() {
-    local message=$1
-    printf "\n${COLORS[YELLOW]}%s " "$message"
-    for emoji in "${LOADING_EMOJIS[@]}"; do
-        printf "%s " "$emoji"
-        sleep 0.2
-    done
-    printf "${COLORS[NC]}\n"
-}
-
-show_banner() {
-    clear
-    cat << EOF
-
-    ${COLORS[GREEN]}
-     ██████╗██╗     ██╗ ██████╗
-    ██╔════╝██║     ██║██╔═══██╗
-    ██║     ██║     ██║██║   ██║
-    ██║     ██║     ██║██║   ██║
-    ╚██████╗███████╗██║╚██████╔╝
-     ╚═════╝╚══════╝╚═╝ ╚═════╝
-    ${COLORS[NC]}
-    ${COLORS[CYAN]}Computing History Facts v${VERSION}${COLORS[NC]}
-
-EOF
-}
-
-display_fact() {
-    local fact=$1
-    local width
-    width=$(tput cols)
-
-    
-    local pattern_index=$((RANDOM % ${#BORDER_PATTERNS[@]}))
-    local border_pattern="${BORDER_PATTERNS[$pattern_index]}"
-
-    # Calculate repetitions needed to fill width
-    local pattern_length=${#border_pattern}
-    local repetitions=$((width / pattern_length + 1))
-
-    local border=""
-    for ((i=0; i<repetitions; i++)); do
-        border+="$border_pattern"
-    done
-    border=${border:0:$width}
-
-    printf "\n${COLORS[PURPLE]}%s${COLORS[NC]}\n" "$border"
-    printf "\n${COLORS[CYAN]}%s${COLORS[NC]}\n" "$fact"
-    printf "\n${COLORS[PURPLE]}%s${COLORS[NC]}\n" "$border"
-}
-
-show_random_fact() {
-    if [ ! -f "$FACTS_FILE" ]; then
-        printf "${COLORS[RED]}Error: Facts file not found at %s${COLORS[NC]}\n" "$FACTS_FILE"
-        exit 1
-    fi
-
-    show_banner
-    show_loading_animation "Discovering computing history"
-
-    local total_facts
-    total_facts=$(wc -l < "$FACTS_FILE")
-    local random_line
-    random_line=$((RANDOM % total_facts + 1))
-    local fact
-    fact=$(sed "${random_line}q;d" "$FACTS_FILE")
-
-    display_fact "$fact"
-    show_commands_menu
-}
-
-search_facts() {
-    clear
-    show_banner
-
-    local term=$1
-    local count=0
-
-    show_loading_animation "Searching through history"
-
-    #
-    mapfile -t matches < <(grep -i "$term" "$FACTS_FILE")
-    count=${#matches[@]}
-
-    if [ $count -eq 0 ]; then
-        printf "\n${COLORS[RED]}No matches found for: %s${COLORS[NC]}\n" "$term"
-        printf "\nPress Enter to continue..."
-        read -r
-        return
-    fi
-
-    printf "\n${COLORS[BLUE]}Found %d matches:${COLORS[NC]}\n" "$count"
-
-    for match in "${matches[@]}"; do
-        display_fact "$match"
-        printf "\nPress Enter for next result (or 'q' to return to main menu): "
-        read -r response
-        if [[ "$response" == "q" ]]; then
-            break
-        fi
-        clear
-    done
-}
-
-show_commands_menu() {
-    printf "\n${COLORS[YELLOW]}Commands:${COLORS[NC]}\n"
-    printf " ${COLORS[GREEN]}[Enter]${COLORS[NC]} Next fact\n"
-    printf " ${COLORS[GREEN]}[s]${COLORS[NC]} Search\n"
-    printf " ${COLORS[GREEN]}[q]${COLORS[NC]} Quit\n"
-}
-
-show_help() {
-    cat << EOF
-${COLORS[BOLD]}Clio - Computing History Facts${COLORS[NC]}
-
-${COLORS[YELLOW]}Usage:${COLORS[NC]} clio [OPTION]
-
-${COLORS[YELLOW]}Options:${COLORS[NC]}
-  -s TERM     Search for facts containing TERM
-  -h          Show this help message
-  -v          Show version information
-  --no-color  Disable colored output
-
-${COLORS[YELLOW]}Interactive Commands:${COLORS[NC]}
-  Enter       Show another fact
-  s           Search facts
-  q           Quit
-
-${COLORS[YELLOW]}Configuration:${COLORS[NC]}
-  Config file: ${CONFIG_FILE}
-  Facts database: ${FACTS_FILE}
-EOF
-}
-
-check_dependencies
-init_config
+# Simple color setup (can be disabled with -n)
+CYAN=$'\033[0;36m'
+NC=$'\033[0m'  # No Color
 
 # Parse command line arguments
-while getopts ":hs:v-:" opt; do
+disable_color=false
+
+while getopts ":hvn" opt; do
     case ${opt} in
         h)
-            show_help
-            exit 0
-            ;;
-        s)
-            search_facts "$OPTARG"
+            echo "clio - Display random computing history facts"
+            echo ""
+            echo "Usage: clio [OPTION]"
+            echo ""
+            echo "Options:"
+            echo "  -h    Show this help message"
+            echo "  -v    Show version information"
+            echo "  -n    Disable colored output"
             exit 0
             ;;
         v)
-            printf "clio version %s\n" "$VERSION"
+            echo "clio version $VERSION"
             exit 0
             ;;
-        -)
-            case "${OPTARG}" in
-                no-color)
-                    for key in "${!COLORS[@]}"; do
-                        COLORS[$key]=''
-                    done
-                    ;;
-                *)
-                    printf "Invalid option: --%s\n" "$OPTARG" >&2
-                    exit 1
-                    ;;
-            esac
+        n)
+            disable_color=true
             ;;
         \?)
-            printf "Invalid option: -%s\n" "$OPTARG" >&2
+            echo "Invalid option: -$OPTARG" >&2
             exit 1
             ;;
     esac
 done
 
+# Disable colors if requested
+if [ "$disable_color" = true ]; then
+    CYAN=""
+    NC=""
+fi
 
-while true; do
-    show_random_fact
-    read -r input
-    case "$input" in
-        q|Q)
-            printf "\n${COLORS[GREEN]}Thank you for using Clio. Goodbye!${COLORS[NC]}\n"
-            exit 0
-            ;;
-        s|S)
-            printf "Enter search term: "
-            read -r search_term
-            search_facts "$search_term"
-            clear
-            ;;
-        *)
-            clear
-            ;;
-    esac
-done
+# Check if facts file exists
+if [ ! -f "$FACTS_FILE" ]; then
+    echo "Error: Facts file not found at $FACTS_FILE"
+    echo "Make sure Clio is properly installed using the install.sh script."
+    exit 1
+fi
 
+# Get total number of facts
+total_facts=$(wc -l < "$FACTS_FILE" 2>/dev/null)
+if [ -z "$total_facts" ]; then
+    echo "Error: Unable to read facts file."
+    exit 1
+fi
+
+# Select a random fact
+random_line=$((RANDOM % total_facts + 1))
+fact=$(sed "${random_line}q;d" "$FACTS_FILE" 2>/dev/null)
+
+# Display the fact exactly like fortune - no separators, just the text
+echo -e "${CYAN}$fact${NC}"
