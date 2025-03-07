@@ -327,3 +327,72 @@ FreeBSD's mascot is a red daemon named "Beastie" with sneakers, a pitchfork, and
 The "shebang" (#!) at the beginning of Unix shell scripts was invented by Dennis Ritchie.
 The Linux /proc filesystem was originally developed for Unix System V by Roger Faulkner and Ron Gomes.
 Puppy Linux was designed to be so small it could run entirely in RAM on older computers.
+The Linux "top" command was first written by Roger Binns in 1984.
+The "MINIX" name stands for "mini-Unix," as it was designed as a teaching tool.
+CentOS originally stood for "Community ENTerprise Operating System."
+The default Unix/Linux command shell prompt character "$" likely originated from the dollar sign on the Multics shell.
+The Unix "lsof" (list open files) command was created by Vic Abell at Purdue University.
+The Linux distro name "Manjaro" has no specific meaning and was chosen simply because it sounded nice.
+The famous Unix fortune program has its origins in fortune cookies and was first included in Version 7 Unix.
+The Unix "ulimit" command was created to help prevent runaway processes from consuming all system resources.
+Red Hat Linux was named after founder Marc Ewing's red Cornell University lacrosse hat.
+The Unix "crontab" was designed to automate tasks at specified times, with its name deriving from "chronograph table."
+The init system used in Unix/Linux for decades was System V init, developed at AT&T as part of UNIX System V in 1983.
+The Linux distribution Slackware is named after the "Church of the SubGenius" concept of "slack."
+The Unix "man" command was originally just a shell script that used nroff to format documentation.
+The first Linux kernel supported only Intel 80386 compatible processors and required a Minix installation to build.
+The Linux "dmesg" command's buffer size was originally fixed at 4KB in early kernels.
+Fedora Linux was named after Red Hat founder Marc Ewing's grandfather's fedora hat business.
+The Unix "fsck" file system check command is often jokingly referred to as a euphemism for a common English expletive.
+Linux Mint was created to be more user-friendly than Ubuntu, which itself was created to be more user-friendly than Debian.
+The Unix "uptime" command was created to track system reliability metrics and has barely changed since.
+The famous "Tux Racer" game was originally created as a university graphics project in 2000.
+The Arch Linux "pacman" package manager name is inspired by the classic Pac-Man video game.
+The POSIX standard that Unix-like systems follow was developed to ensure compatibility between different Unix variants.
+The Unix "banner" command for creating large ASCII text was originally used for printing header pages on shared printers.
+The Linux distribution openSUSE evolved from a German translation of Slackware in 1992.
+The Unix "wget" tool was created by Hrvoje Nikšić in 1996 as part of the GNU Project.
+Kali Linux, used for penetration testing, was formerly known as BackTrack before its complete rewrite in 2013.
+The Linux command "dmesg -H" to make output human-readable wasn't added until 2010, despite the utility existing for decades.
+The bourne shell (sh) doesn't actually expand the tilde (~) for home directories; that feature was added in later shells.
+The Unix "split" command was designed when files needed to fit on floppy disks with limited capacity.
+The original design of Unix pipes allowed data to flow in both directions, but this was simplified to one-way pipes.
+The Unix "bc" calculator program's name stands for "basic calculator" or "bench calculator."
+Linus Torvalds chose the GNU General Public License for Linux after initially using a more restrictive license.
+The Unix "file" command identifies file types by examining content patterns and was written by Ian Darwin.
+The Linux "/etc/shadow" file for storing encrypted passwords wasn't in the original Unix design but was added for security.
+Elementary OS, a Linux distribution focused on design, was initially created as a set of themes for Ubuntu.
+The Unix "head" and "tail" commands were originally separate utilities but are now often part of the same codebase.
+The Vim text editor's name changed from "Vi IMitation" to "Vi IMproved" as it gained features.
+The Unix "xargs" command was specifically designed to solve the "argument list too long" problem.
+The first Linux mascot proposal wasn't a penguin but a fox before Linus Torvalds chose the penguin.
+The "inode" concept in Unix filesystems was pioneered by Ken Thompson and remains fundamental to Unix/Linux file organization.
+The Linux "sysctl" command for modifying kernel parameters at runtime was first introduced in BSD Unix.
+The "umask" (user mask) command in Unix sets default permissions by actually masking permission bits that would otherwise be enabled.
+Pop!_OS Linux was developed by System76, a computer manufacturer, to better integrate with their hardware.
+The Unix "screen" multiplexer was created by Oliver Laumann in 1987 to allow persistent terminal sessions.
+The iconic ThinkPad laptops were among the first commercial hardware to be certified as Linux-compatible.
+The Unix "scp" command (secure copy) was built on top of SSH protocol and replaced the less secure "rcp" command.
+Clear Linux, developed by Intel, is optimized specifically for Intel hardware performance.
+The Unix "tput" command provides a portable way to control terminal features across different terminal types.
+The Linux swap partition was inspired by the virtual memory implementations in other Unix systems.
+The Unix "disown" command was added to bash to prevent terminal hangup signals from affecting background processes.
+The Linux kernel uses a monolithic design, contrary to the microkernel design that Linus Torvalds initially debated with Andrew Tanenbaum.
+The Unix "dd" command's cryptic parameter format (like "if=" and "of=") was modeled after IBM's JCL language.
+Linux From Scratch (LFS) was created in 1999 as a project to teach users how to build their own custom Linux system.
+The Unix "script" command to record terminal sessions dates back to early Unix versions from the 1970s.
+The Linux "mke2fs" command, which creates ext2/3/4 filesystems, was written by Theodore Ts'o.
+The Unix "sleep" command was designed for simple timing operations in shell scripts.
+Endless OS, a Linux distribution designed for offline use, ships with a compressed 16GB content bundle.
+The Unix "mesg" command to control terminal write permissions was created for early multi-user systems.
+The Linux virtual console (accessible via Ctrl+Alt+F1, F2, etc.) was implemented to provide multiple text terminals without hardware terminals.
+The Unix "write" command for sending messages directly to other users' terminals predates modern chat programs.
+Void Linux uses the "xbps" package manager which was developed specifically for that distribution.
+The early Unix "groups" command only showed a user's primary group until supplementary groups were implemented.
+NixOS implements a unique approach to package management where different versions of programs can coexist without conflicts.
+The Unix "expr" command for evaluating expressions was primarily designed for arithmetic in shell scripts before more modern alternatives.
+The Linux Live CD concept was pioneered by Yggdrasil Linux in 1993 but became widely popular with Knoppix in 2000.
+The Unix "quota" system for limiting disk usage was implemented to manage resources in multi-user environments.
+The Linux "dbus" system for inter-process communication was initially developed by Red Hat in 2002.
+The Unix "logger" command for adding entries to the system log was created to help with system monitoring and debugging.
+The Linux Documentation Project (LDP) was founded in 1992 to provide free documentation for the Linux operating system.
