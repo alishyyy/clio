@@ -2,7 +2,6 @@
 
 VERSION="1.3.0"
 
-# Configuration path - matches install.sh
 FACTS_FILE="/usr/share/clio/facts.txt"
 
 # Simple color setup (can be disabled with -n)
