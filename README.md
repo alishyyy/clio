@@ -4,8 +4,7 @@ A simple command-line tool that displays random computer history facts in a fort
 
 ## Overview
 
-Clio is a lightweight bash script that shows interesting facts about Unix, Linux, and computer history. Inspired by the classic `fortune` command, it randomly selects and displays a fact each time it's run.
-
+Clio is a lightweight bash script that shows interesting facts about Unix, Linux, and computer history. 
 ## Installation
 
 ```bash
