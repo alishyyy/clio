@@ -1,148 +1,53 @@
-# 🎲 Clio - Your Time Machine to Computing History
+# Clio
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Bash](https://img.shields.io/badge/Shell-Bash-green.svg)
-![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS-blue.svg)
+A simple command-line tool that displays random computer history facts in a fortune-like style.
 
-> "Those who don't know history are destined to `rm -rf` it." - Not Edmund Burke
+## Overview
 
-## 🚀 What is Clio?
+Clio is a lightweight bash script that shows interesting facts about Unix, Linux, and computer history. Inspired by the classic `fortune` command, it randomly selects and displays a fact each time it's run.
 
-Clio is your personal time machine into the fascinating world of computing history! Like the ancient Greek muse of history it's named after, Clio brings the past to life through an engaging collection of facts about the pioneers, innovations, and moments that shaped our digital world.
-
-Think of it as `fortune` but for tech history – perfect for your terminal startup, random inspiration, or those "Hey, did you know...?" moments!
-
-![Clio Demo](https://raw.githubusercontent.com/yourusername/clio/main/demo.gif)
-
-## ✨ Features
-
-- 🎯 **Random Facts**: Dive into a curated collection of computing history facts
-- 🔍 **Search Mode**: Find specific historical events or personalities
-- 📝 **History Tracking**: Keep track of facts you've seen
-- 🎨 **Beautiful Display**: Enjoy ASCII art and smooth animations
-- ⚡ **Fast & Lightweight**: Written in pure Bash for maximum compatibility
-- 🛠️ **Configurable**: Customize colors, animation speed, and more
-- 📱 **Interactive**: User-friendly interface with keyboard commands
-
-## 🚀 Quick Start
-
-### Installation
+## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/alishyyy/clio.git
-
-# Navigate to the directory
+git clone https://github.com/yourusername/clio.git
 cd clio
-
-# Run the installer
 sudo ./install.sh
 ```
 
-### Usage
+## Usage
+
+Simply run:
 
 ```bash
-# Show a random fact
 clio
-
-# Search for facts about Linux
-clio -s "Linux"
-
-# Show help
-clio -h
-
-# Show version
-clio -v
-
-# Clear history
-clio -c
 ```
 
-## 🎮 Interactive Commands
+### Options
 
-Once Clio is running:
-- Press `Enter` for a new fact
-- Press `s` to search facts
-- Press `h` to view history
-- Press `q` to quit
+- `-h` - Display help information
+- `-v` - Show version information
+- `-n` - Disable colored output
 
-## ⚙️ Configuration
-
-Clio creates a configuration directory at `~/.config/clio` with the following files:
-
-```
-~/.config/clio/
-├── config    # User configuration
-└── history   # Fact viewing history
-```
-
-Edit `config` to customize:
-- Typing speed
-- Animation settings
-- Color theme
-
-## 🎨 Command Line Options
+## Uninstall
 
 ```bash
-Usage: clio [OPTION]
-Display random computing history facts.
-
-Options:
-  -s TERM     Search for facts containing TERM
-  -h          Display this help message
-  -v          Display version information
-  -c          Clear history
-  --no-color  Disable colored output
-  --no-animation  Disable animations
+sudo ./uninstall.sh
 ```
 
-## 🔧 Requirements
+## Adding Custom Facts
 
-- Bash 4.0 or later
-- Basic Unix utilities (tput, sed, grep)
-- A terminal that supports ASCII colors
+The facts database is located at `/usr/share/clio/facts.txt`. Each line in this file represents a separate fact.
 
-## 🤝 Contributing
+To add your own facts:
 
-Found a bug? Want to add more features? Contributions are welcome!
+```bash
+sudo nano /usr/share/clio/facts.txt
+```
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Add your changes
-4. Commit (`git commit -m 'Add AmazingFeature'`)
-5. Push (`git push origin feature/AmazingFeature`)
-6. Open a Pull Request
+## License
 
-### Adding New Facts
+MIT
 
-Facts can be added to `facts.txt`. Please ensure:
-- Historical accuracy (with sources if possible)
-- Clear, concise writing
-- One fact per line
-- No duplicate facts
+## Contributing
 
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 💖 Acknowledgments
-
-- Inspired by the classic `fortune` command
-- Thanks to all the computing pioneers who made these facts possible
-- Special thanks to the open-source community
-
-## 🔮 Coming Soon
-
-- [ ] Integration with system notifications
-- [ ] Category-based fact filtering
-- [ ] Fact submission web interface
-- [ ] API for retrieving facts
-
-
----
-
-<div align="center">
-Made with ❤️ by Alishyy
-
-If you find Clio useful, consider giving it a ⭐️!
-</div>
+Contributions are welcome! Feel free to submit pull requests with new facts or improvements.
