@@ -1,9 +1,3 @@
-# Clio
-
-A simple command-line tool that displays random computer history facts in a fortune-like style.
-
-## Overview
-
 Clio is a lightweight bash script that shows interesting facts about Unix, Linux, and computer history. 
 ## Installation
 
