@@ -1,66 +1,440 @@
 #!/bin/bash
 
-VERSION="1.3.0"
-
+VERSION="2.0.0"
 FACTS_FILE="/usr/share/clio/facts.txt"
+CONFIG_DIR="$HOME/.config/clio"
+CONFIG_FILE="$CONFIG_DIR/config"
+SEEN_FILE="$CONFIG_DIR/seen.txt"
 
-# Simple color setup (can be disabled with -n)
-CYAN=$'\033[0;36m'
-NC=$'\033[0m'  # No Color
+# Color themes
+declare -A THEMES
+THEMES=(
+    ["default"]="cyan:0;36"
+    ["matrix"]="green:0;32"
+    ["retro"]="yellow:1;33"
+    ["hacker"]="bright_green:1;32"
+    ["minimal"]="white:0;37"
+    ["fire"]="red:0;31"
+    ["ocean"]="blue:0;34"
+    ["sunset"]="magenta:0;35"
+)
 
-# Parse command line arguments
-disable_color=false
+# ASCII Art Headers
+declare -A ASCII_ART
+ASCII_ART["computer"]='
+    ┌─────────────────────┐
+    │ ░░▒▒▓▓██ CLIO ██▓▓▒▒░░ │
+    │   Computing Facts   │
+    └─────────────────────┘'
 
-while getopts ":hvn" opt; do
-    case ${opt} in
-        h)
-            echo "clio - Display random computing history facts"
-            echo ""
-            echo "Usage: clio [OPTION]"
-            echo ""
-            echo "Options:"
-            echo "  -h    Show this help message"
-            echo "  -v    Show version information"
-            echo "  -n    Disable colored output"
-            exit 0
-            ;;
-        v)
-            echo "clio version $VERSION"
-            exit 0
-            ;;
-        n)
-            disable_color=true
-            ;;
-        \?)
-            echo "Invalid option: -$OPTARG" >&2
+ASCII_ART["matrix"]='
+▓█████▄  ▄▄▄     ▄▄▄█████▓ ▄▄▄      
+▒██▀ ██▌▒████▄   ▓  ██▒ ▓▒▒████▄    
+░██   █▌▒██  ▀█▄ ▒ ▓██░ ▒░▒██  ▀█▄  
+░▓█▄   ▌░██▄▄▄▄██░ ▓██▓ ░ ░██▄▄▄▄██ 
+░▒████▓  ▓█   ▓██▒ ▒██▒ ░  ▓█   ▓██▒'
+
+# Default configuration
+DEFAULT_THEME="default"
+SHOW_HEADER=true
+INTERACTIVE_MODE=false
+CATEGORY_FILTER=""
+DAILY_MODE=false
+SEARCH_TERM=""
+DISABLE_COLOR=false
+SHARE_MODE=false
+
+# Parse config file
+load_config() {
+    mkdir -p "$CONFIG_DIR"
+    if [[ -f "$CONFIG_FILE" ]]; then
+        source "$CONFIG_FILE"
+    fi
+}
+
+# Color functions
+get_color() {
+    local theme_name="${1:-$DEFAULT_THEME}"
+    local color_code="${THEMES[$theme_name]##*:}"
+    if [[ "$DISABLE_COLOR" == "true" ]]; then
+        echo ""
+    else
+        echo "\033[${color_code}m"
+    fi
+}
+
+get_reset_color() {
+    if [[ "$DISABLE_COLOR" == "true" ]]; then
+        echo ""
+    else
+        echo "\033[0m"
+    fi
+}
+
+# Enhanced help function
+show_help() {
+    local color=$(get_color)
+    local reset=$(get_reset_color)
+    echo -e "${color}${ASCII_ART[computer]}${reset}"
+    echo
+    echo -e "${color}USAGE:${reset}"
+    echo "  clio [OPTIONS]"
+    echo
+    echo -e "${color}OPTIONS:${reset}"
+    echo "  -h, --help              Show this help message"
+    echo "  -v, --version           Show version information"
+    echo "  -n, --no-color          Disable colored output"
+    echo "  -i, --interactive       Interactive mode (browse with arrow keys)"
+    echo "  -c, --category CATEGORY Filter by category (unix, linux, programming, hardware)"
+    echo "  -d, --daily             Show today's fact (consistent daily fact)"
+    echo "  -f, --find TERM         Search for facts containing TERM"
+    echo "  -t, --theme THEME       Set color theme (default, matrix, retro, hacker, minimal)"
+    echo "  -s, --share             Generate shareable text for social media"
+    echo "  --list-themes           Show available themes"
+    echo "  --stats                 Show usage statistics"
+    echo "  --random-unseen         Show a fact you haven't seen before"
+    echo
+    echo -e "${color}THEMES:${reset}"
+    for theme in "${!THEMES[@]}"; do
+        local theme_color=$(get_color "$theme")
+        echo "  ${theme_color}${theme}${reset} - Sample text in this theme"
+    done
+    echo
+    echo -e "${color}EXAMPLES:${reset}"
+    echo "  clio                    # Show random fact"
+    echo "  clio -c unix            # Show Unix-related fact"
+    echo "  clio -d                 # Show today's fact"
+    echo "  clio -f \"kernel\"        # Search for facts about kernel"
+    echo "  clio -t matrix          # Use matrix theme"
+    echo "  clio -i                 # Interactive browsing mode"
+    echo
+    echo -e "${color}CONFIG:${reset}"
+    echo "  Config file: $CONFIG_FILE"
+    echo "  Seen facts: $SEEN_FILE"
+}
+
+# Category detection
+detect_category() {
+    local fact="$1"
+    fact_lower=$(echo "$fact" | tr '[:upper:]' '[:lower:]')
+    
+    if [[ "$fact_lower" =~ (unix|bell labs|ken thompson|dennis ritchie|bourne|shell|pipe|grep|sed|awk) ]]; then
+        echo "unix"
+    elif [[ "$fact_lower" =~ (linux|linus torvalds|gnu|ubuntu|debian|red hat|kernel|tux) ]]; then
+        echo "linux"
+    elif [[ "$fact_lower" =~ (programming|language|python|java|javascript|c\+\+|coding|compiler) ]]; then
+        echo "programming"
+    elif [[ "$fact_lower" =~ (computer|processor|memory|disk|hardware|cpu|ram|intel|amd) ]]; then
+        echo "hardware"
+    elif [[ "$fact_lower" =~ (internet|web|browser|email|tcp|http|url|network) ]]; then
+        echo "internet"
+    else
+        echo "general"
+    fi
+}
+
+# Filter facts by category
+get_category_facts() {
+    local category="$1"
+    local temp_file=$(mktemp)
+    
+    while IFS= read -r fact; do
+        local fact_category=$(detect_category "$fact")
+        if [[ "$fact_category" == "$category" ]]; then
+            echo "$fact" >> "$temp_file"
+        fi
+    done < "$FACTS_FILE"
+    
+    echo "$temp_file"
+}
+
+# Search functionality
+search_facts() {
+    local search_term="$1"
+    local temp_file=$(mktemp)
+    
+    grep -i "$search_term" "$FACTS_FILE" > "$temp_file"
+    echo "$temp_file"
+}
+
+# Daily fact (consistent based on date)
+get_daily_fact() {
+    local day_of_year=$(date +%j)
+    local total_facts=$(wc -l < "$FACTS_FILE")
+    local line_number=$(( (day_of_year % total_facts) + 1 ))
+    sed "${line_number}q;d" "$FACTS_FILE"
+}
+
+# Track seen facts
+mark_as_seen() {
+    local fact="$1"
+    local fact_hash=$(echo "$fact" | md5sum | cut -d' ' -f1)
+    mkdir -p "$CONFIG_DIR"
+    echo "$fact_hash" >> "$SEEN_FILE"
+}
+
+is_seen() {
+    local fact="$1"
+    local fact_hash=$(echo "$fact" | md5sum | cut -d' ' -f1)
+    [[ -f "$SEEN_FILE" ]] && grep -q "$fact_hash" "$SEEN_FILE"
+}
+
+get_unseen_fact() {
+    local attempts=0
+    local max_attempts=50
+    
+    while [[ $attempts -lt $max_attempts ]]; do
+        local total_facts=$(wc -l < "$FACTS_FILE")
+        local random_line=$((RANDOM % total_facts + 1))
+        local fact=$(sed "${random_line}q;d" "$FACTS_FILE")
+        
+        if ! is_seen "$fact"; then
+            echo "$fact"
+            return 0
+        fi
+        ((attempts++))
+    done
+    
+    # If all facts seen, return random fact
+    local total_facts=$(wc -l < "$FACTS_FILE")
+    local random_line=$((RANDOM % total_facts + 1))
+    sed "${random_line}q;d" "$FACTS_FILE"
+}
+
+# Interactive mode
+interactive_mode() {
+    local color=$(get_color)
+    local reset=$(get_reset_color)
+    local current_line=1
+    local total_facts=$(wc -l < "$FACTS_FILE")
+    
+    echo -e "${color}=== Interactive Mode ===${reset}"
+    echo "Use arrow keys: ↑/↓ to navigate, Enter to select, q to quit"
+    echo
+    
+    while true; do
+        local fact=$(sed "${current_line}q;d" "$FACTS_FILE")
+        local category=$(detect_category "$fact")
+        
+        clear
+        echo -e "${color}=== Fact ${current_line}/${total_facts} [$category] ===${reset}"
+        echo
+        echo -e "${color}$fact${reset}"
+        echo
+        echo -e "${color}[↑/↓: Navigate | Enter: Mark as favorite | s: Share | q: Quit]${reset}"
+        
+        read -rsn1 key
+        case "$key" in
+            $'\x1b') # Arrow keys
+                read -rsn2 -t 0.1 key
+                case "$key" in
+                    '[A') # Up arrow
+                        ((current_line > 1)) && ((current_line--))
+                        ;;
+                    '[B') # Down arrow
+                        ((current_line < total_facts)) && ((current_line++))
+                        ;;
+                esac
+                ;;
+            'q'|'Q')
+                echo "Goodbye!"
+                exit 0
+                ;;
+            '')  # Enter key
+                mark_as_seen "$fact"
+                echo "Fact saved!"
+                sleep 1
+                ;;
+            's'|'S')
+                generate_share_text "$fact"
+                echo "Share text copied to clipboard (if available)"
+                sleep 2
+                ;;
+        esac
+    done
+}
+
+# Share functionality
+generate_share_text() {
+    local fact="$1"
+    local share_text="💻 Computing Fact: $fact
+
+#ComputingHistory #Unix #Linux #Programming #TechFacts #Clio"
+    
+    echo "$share_text"
+    
+    # Try to copy to clipboard
+    if command -v pbcopy >/dev/null 2>&1; then
+        echo "$share_text" | pbcopy
+    elif command -v xclip >/dev/null 2>&1; then
+        echo "$share_text" | xclip -selection clipboard
+    elif command -v wl-copy >/dev/null 2>&1; then
+        echo "$share_text" | wl-copy
+    fi
+}
+
+# Statistics
+show_stats() {
+    local color=$(get_color)
+    local reset=$(get_reset_color)
+    local total_facts=$(wc -l < "$FACTS_FILE")
+    local seen_count=0
+    
+    if [[ -f "$SEEN_FILE" ]]; then
+        seen_count=$(wc -l < "$SEEN_FILE")
+    fi
+    
+    echo -e "${color}=== Clio Statistics ===${reset}"
+    echo "Total facts available: $total_facts"
+    echo "Facts you've seen: $seen_count"
+    echo "Unseen facts: $((total_facts - seen_count))"
+    echo "Progress: $(( (seen_count * 100) / total_facts ))%"
+    echo
+    echo "Most common categories:"
+    
+    # Category breakdown
+    declare -A category_counts
+    while IFS= read -r fact; do
+        local cat=$(detect_category "$fact")
+        ((category_counts[$cat]++))
+    done < "$FACTS_FILE"
+    
+    for category in "${!category_counts[@]}"; do
+        echo "  $category: ${category_counts[$category]} facts"
+    done | sort -k2 -nr
+}
+
+# Main fact display function
+display_fact() {
+    local fact="$1"
+    local color=$(get_color "$DEFAULT_THEME")
+    local reset=$(get_reset_color)
+    
+    if [[ "$SHOW_HEADER" == "true" && "$DEFAULT_THEME" == "matrix" ]]; then
+        echo -e "${color}${ASCII_ART[matrix]}${reset}"
+        echo
+    fi
+    
+    if [[ "$SHARE_MODE" == "true" ]]; then
+        generate_share_text "$fact"
+    else
+        echo -e "${color}$fact${reset}"
+        mark_as_seen "$fact"
+    fi
+}
+
+# Main logic
+main() {
+    load_config
+    
+    # Parse command line arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            -v|--version)
+                echo "clio version $VERSION"
+                exit 0
+                ;;
+            -n|--no-color)
+                DISABLE_COLOR=true
+                shift
+                ;;
+            -i|--interactive)
+                INTERACTIVE_MODE=true
+                shift
+                ;;
+            -c|--category)
+                CATEGORY_FILTER="$2"
+                shift 2
+                ;;
+            -d|--daily)
+                DAILY_MODE=true
+                shift
+                ;;
+            -f|--find)
+                SEARCH_TERM="$2"
+                shift 2
+                ;;
+            -t|--theme)
+                DEFAULT_THEME="$2"
+                shift 2
+                ;;
+            -s|--share)
+                SHARE_MODE=true
+                shift
+                ;;
+            --list-themes)
+                echo "Available themes:"
+                for theme in "${!THEMES[@]}"; do
+                    echo "  $theme"
+                done
+                exit 0
+                ;;
+            --stats)
+                show_stats
+                exit 0
+                ;;
+            --random-unseen)
+                local fact=$(get_unseen_fact)
+                display_fact "$fact"
+                exit 0
+                ;;
+            *)
+                echo "Unknown option: $1"
+                echo "Use -h for help"
+                exit 1
+                ;;
+        esac
+    done
+    
+    # Check if facts file exists
+    if [[ ! -f "$FACTS_FILE" ]]; then
+        echo "Error: Facts file not found at $FACTS_FILE"
+        echo "Make sure Clio is properly installed using the install.sh script."
+        exit 1
+    fi
+    
+    # Interactive mode
+    if [[ "$INTERACTIVE_MODE" == "true" ]]; then
+        interactive_mode
+        exit 0
+    fi
+    
+    # Determine which fact to show
+    local fact
+    local facts_source="$FACTS_FILE"
+    
+    if [[ -n "$SEARCH_TERM" ]]; then
+        facts_source=$(search_facts "$SEARCH_TERM")
+        if [[ ! -s "$facts_source" ]]; then
+            echo "No facts found containing '$SEARCH_TERM'"
             exit 1
-            ;;
-    esac
-done
+        fi
+    elif [[ -n "$CATEGORY_FILTER" ]]; then
+        facts_source=$(get_category_facts "$CATEGORY_FILTER")
+        if [[ ! -s "$facts_source" ]]; then
+            echo "No facts found in category '$CATEGORY_FILTER'"
+            exit 1
+        fi
+    fi
+    
+    if [[ "$DAILY_MODE" == "true" ]]; then
+        fact=$(get_daily_fact)
+    else
+        local total_facts=$(wc -l < "$facts_source")
+        local random_line=$((RANDOM % total_facts + 1))
+        fact=$(sed "${random_line}q;d" "$facts_source")
+    fi
+    
+    # Clean up temp files
+    if [[ "$facts_source" != "$FACTS_FILE" ]]; then
+        rm -f "$facts_source"
+    fi
+    
+    display_fact "$fact"
+}
 
-# Disable colors if requested
-if [ "$disable_color" = true ]; then
-    CYAN=""
-    NC=""
-fi
-
-# Check if facts file exists
-if [ ! -f "$FACTS_FILE" ]; then
-    echo "Error: Facts file not found at $FACTS_FILE"
-    echo "Make sure Clio is properly installed using the install.sh script."
-    exit 1
-fi
-
-# Get total number of facts
-total_facts=$(wc -l < "$FACTS_FILE" 2>/dev/null)
-if [ -z "$total_facts" ]; then
-    echo "Error: Unable to read facts file."
-    exit 1
-fi
-
-# Select a random fact
-random_line=$((RANDOM % total_facts + 1))
-fact=$(sed "${random_line}q;d" "$FACTS_FILE" 2>/dev/null)
-
-# Display the fact exactly like fortune - no separators, just the text
-echo -e "${CYAN}$fact${NC}"
+main "$@"
