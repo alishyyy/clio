@@ -2,7 +2,7 @@ Clio is a lightweight bash script that shows interesting facts about Unix, Linux
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/clio.git
+git clone https://github.com/alishyyy/clio.git
 cd clio
 sudo ./install.sh
 ```
